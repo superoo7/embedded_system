@@ -1,0 +1,37 @@
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   3-31-2017  15:28:30         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00004     GOTO    START                   ; go to beginning of program
+                      00005 
+                      00006 ; TODO ADD INTERRUPTS HERE IF USED
+                      00007 
+                      00008 MAIN_PROG CODE                      ; let linker place main program
+                      00009 
+000000                00010 START
+000000 0E10           00011     MOVLW 0x10
+000002 0F15           00012     ADDLW 0x15
+                      00013  
+000004 EF?? F???      00014     GOTO $                          ; loop forever
+                      00015 
+                      00016     END
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   3-31-2017  15:28:30         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+START                             00000000
+_MAIN_PROG_0004                   00000004
+__18F452                          00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
