@@ -14,23 +14,24 @@
 # You can invoke make with the values of the macros:
 # $ makeMP_CC="/opt/microchip/mplabc30/v3.30c/bin/pic30-gcc" ...  
 #
-PATH_TO_IDE_BIN=/Applications/microchip/mplabx/v3.55/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/
+SHELL=cmd.exe
+PATH_TO_IDE_BIN=C:/Program Files (x86)/Microchip/MPLABX/v3.55/mplab_ide/platform/../mplab_ide/modules/../../bin/
 # Adding MPLAB X bin directory to path.
-PATH:=/Applications/microchip/mplabx/v3.55/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/:$(PATH)
+PATH:=C:/Program Files (x86)/Microchip/MPLABX/v3.55/mplab_ide/platform/../mplab_ide/modules/../../bin/:$(PATH)
 # Path to java used to run MPLAB X when this makefile was created
-MP_JAVA_PATH="/Applications/microchip/mplabx/v3.55/sys/java/jre1.8.0_91.jre/Contents/Home/bin/"
+MP_JAVA_PATH="C:\Program Files (x86)\Microchip\MPLABX\v3.55\sys\java\jre1.8.0_91/bin/"
 OS_CURRENT="$(shell uname -s)"
 # MP_CC is not defined
 # MP_CPPC is not defined
 # MP_BC is not defined
-MP_AS="/Applications/microchip/mplabx/v3.55/mpasmx/mpasmx"
-MP_LD="/Applications/microchip/mplabx/v3.55/mpasmx/mplink"
-MP_AR="/Applications/microchip/mplabx/v3.55/mpasmx/mplib"
-DEP_GEN=${MP_JAVA_PATH}java -jar "/Applications/microchip/mplabx/v3.55/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
+MP_AS="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx\mpasmx.exe"
+MP_LD="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx\mplink.exe"
+MP_AR="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx\mplib.exe"
+DEP_GEN=${MP_JAVA_PATH}java -jar "C:/Program Files (x86)/Microchip/MPLABX/v3.55/mplab_ide/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
 # MP_CC_DIR is not defined
 # MP_CPPC_DIR is not defined
 # MP_BC_DIR is not defined
-MP_AS_DIR="/Applications/microchip/mplabx/v3.55/mpasmx"
-MP_LD_DIR="/Applications/microchip/mplabx/v3.55/mpasmx"
-MP_AR_DIR="/Applications/microchip/mplabx/v3.55/mpasmx"
+MP_AS_DIR="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx"
+MP_LD_DIR="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx"
+MP_AR_DIR="C:\Program Files (x86)\Microchip\MPLABX\v3.55\mpasmx"
 # MP_BC_DIR is not defined
