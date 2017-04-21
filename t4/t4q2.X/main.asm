@@ -8,7 +8,20 @@ RES_VECT  CODE    0x0000            ; processor reset vector
 MAIN_PROG CODE                      ; let linker place main program
 
 START
-
-    GOTO $                          ; loop forever
+    MOVLW D'100'
+    MOVWF MYREG
+    HERE NOP
+	 NOP
+	 NOP
+	 NOP
+	 NOP
+	 DECFSC MYREG, F	    ;
+ 
+    GOTO HERE
 
     END
+    
+    ; NOP time = T * prescaling factor
+    ; NOP time = 1/4Mhz * 4
+    ; NOP time = 1 micro s
+    ; Total NOP = 5 micro s
