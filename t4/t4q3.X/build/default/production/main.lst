@@ -1,0 +1,66 @@
+MPASM 5.72                          MAIN.ASM   4-21-2017  15:17:16         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 RES_VECT  CODE    0x0000            ; processor reset vector
+0000   2???           00004     GOTO    START                   ; go to beginning of program
+                      00005 
+                      00006 ; TODO ADD INTERRUPTS HERE IF USED
+                      00007 
+                      00008 MAIN_PROG CODE                      ; let linker place main program
+                      00009 
+0000                  00010 START
+0000   3064           00011     MOVLW D'100'
+Error[113]  : Symbol not previously defined (MYREG)
+0001   0080           00012     MOVWF MYREG
+Warning[207]: Found label after column 1. (HERE)
+0002                  00013     HERE 
+                      00014         
+Warning[207]: Found label after column 1. (COUNT)
+  0000000A            00015         COUNT   EQU D'10'
+Warning[207]: Found label after column 1. (STORAGE)
+  00000020            00016         STORAGE EQU 0x20
+                      00017         
+0002   01A0           00018         CLRF STORAGE
+                      00019  
+Error[113]  : Symbol not previously defined (COUNTER)
+0003   3000           00020         MOVLW COUNTER
+0004   00A0           00021         MOVWF STORAGE   
+                      00022  
+Warning[207]: Found label after column 1. (LOOP)
+0005   0000           00023         LOOP NOP
+0006   0000           00024              NOP
+0007   0000           00025              NOP
+0008   0000           00026              NOP
+0009   0000           00027              NOP
+Warning[207]: Found label after column 1. (DECFSC)
+Error[122]  : Illegal opcode (MYREG)
+0009   0000           00028              DECFSC MYREG, F        
+000A   03A0           00029              DECF STORAGE, 1
+000B   1D03 2???      00030              BNZ LOOP           ; LOOP 10 TIMES
+                      00031         
+000D   2???           00032     GOTO HERE
+                      00033 
+                      00034     END
+MPASM 5.72                          MAIN.ASM   4-21-2017  15:17:16         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+COUNT                             0000000A
+HERE                              00000002
+LOOP                              00000005
+START                             00000000
+STORAGE                           00000020
+__16LF84A                         00000001
+
+Errors   :     3
+Warnings :     5 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
