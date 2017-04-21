@@ -1,0 +1,5 @@
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPLABX\V3.55\MPASMX\P16F84A.INC 34 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Error[113]   C:\USERS\SUPEROO7\DESKTOP\ASSEMBLYPIC\T4\T4Q2.X\MAIN.ASM 13 : Symbol not previously defined (MYREG)
+Warning[207] C:\USERS\SUPEROO7\DESKTOP\ASSEMBLYPIC\T4\T4Q2.X\MAIN.ASM 14 : Found label after column 1. (HERE)
+Warning[207] C:\USERS\SUPEROO7\DESKTOP\ASSEMBLYPIC\T4\T4Q2.X\MAIN.ASM 19 : Found label after column 1. (DECFSC)
+Error[122]   C:\USERS\SUPEROO7\DESKTOP\ASSEMBLYPIC\T4\T4Q2.X\MAIN.ASM 19 : Illegal opcode (MYREG)

@@ -1,0 +1,36 @@
+MPASM 5.72                          MAIN.ASM   4-21-2017  16:04:50         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 RES_VECT  CODE    0x0000            ; processor reset vector
+0000   2???           00004     GOTO    START                   ; go to beginning of program
+                      00005 
+                      00006 ; TODO ADD INTERRUPTS HERE IF USED
+                      00007 
+                      00008 MAIN_PROG CODE                      ; let linker place main program
+                      00009 
+0000                  00010 START
+                      00011     
+                      00012     
+0000   2???           00013     GOTO $                          ; loop forever
+                      00014 
+                      00015     END
+MPASM 5.72                          MAIN.ASM   4-21-2017  16:04:50         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+START                             00000000
+_MAIN_PROG_0000                   00000000
+__16LF84A                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
