@@ -16,4 +16,4 @@ Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 93 : U
 Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 95 : Found label after column 1. (DECREMENT)
 Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 99 : Using default destination of 1 (file).
 Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 104 : Found label after column 1. (CHK_RA2)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 109 : Found label after column 1. (CHK_RA3)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 110 : Found label after column 1. (CHK_RA3)

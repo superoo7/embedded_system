@@ -31,7 +31,7 @@ START
                                 ; initialize data direction
     MOVWF TRISB                 ; Set RB<7:0> as outputs
     BSF   TRISA,  2             ; Set RA2 as input
-    BSF   TRISA,  3
+    BSF   TRISA,  3             ; Set RA3 as input
     BCF   STATUS, RP0           ; Select Bank 0 (PORT B)
 again
     MOVLW D'246'
@@ -87,25 +87,26 @@ L2
         GOTO  INCREMENT       ; RA2 is 1, RA3 is 0 => Increment
         GOTO  CHK_PUSH        ; RA2 is 1, RA3 is 1 => run again
       INCREMENT
-        CALL  Delay           ; wait
-        CALL  Delay           ; wait
+        CALL   Delay           ; wait
+        CALL   Delay           ; wait
         INCF   COUNT,F        ; Increment
         INCFSZ CTR_03         ; Increment
         RETURN
       DECREMENT
-        CALL  Delay           ; wait
-        CALL  Delay           ; wait
+        CALL   Delay           ; wait
+        CALL   Delay           ; wait
         DECF   COUNT,F        ; Decrement
         DECFSZ CTR_03         ; Decrement
         RETURN
 
 
-;
+; Check RA2
   CHK_RA2
     MOVFW PORTA
     ANDLW B'00000100'     ; Check RA2
     RETURN
 
+; Check RA3
   CHK_RA3
     MOVFW PORTA
     ANDLW B'00001000'     ; Check RA3

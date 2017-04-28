@@ -1,4 +1,4 @@
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  1
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -56,8 +56,8 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
 0005   1505           00033     BSF   TRISA,  2             ; Set RA2 as input
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0006   1585           00034     BSF   TRISA,  3
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  2
+0006   1585           00034     BSF   TRISA,  3             ; Set RA3 as input
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ Warning[207]: Found label after column 1. (RA2_FALSE)
 0023   2???           00082         GOTO  CHK_PUSH        ; RA2 is 0, RA3 is 0 => run again
 0024   2???           00083         GOTO  DECREMENT       ; RA2 is 0, RA3 is 1 => Decrement
 Warning[207]: Found label after column 1. (RA2_TRUE)
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  3
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -129,37 +129,38 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028   2???           00088         GOTO  CHK_PUSH        ; RA2 is 1, RA3 is 1 => run again
 Warning[207]: Found label after column 1. (INCREMENT)
 0029                  00089       INCREMENT
-0029   2???           00090         CALL  Delay           ; wait
-002A   2???           00091         CALL  Delay           ; wait
+0029   2???           00090         CALL   Delay           ; wait
+002A   2???           00091         CALL   Delay           ; wait
 002B   0AA3           00092         INCF   COUNT,F        ; Increment
 Message[305]: Using default destination of 1 (file).
 002C   0FA2           00093         INCFSZ CTR_03         ; Increment
 002D   0008           00094         RETURN
 Warning[207]: Found label after column 1. (DECREMENT)
 002E                  00095       DECREMENT
-002E   2???           00096         CALL  Delay           ; wait
-002F   2???           00097         CALL  Delay           ; wait
+002E   2???           00096         CALL   Delay           ; wait
+002F   2???           00097         CALL   Delay           ; wait
 0030   03A3           00098         DECF   COUNT,F        ; Decrement
 Message[305]: Using default destination of 1 (file).
 0031   0BA2           00099         DECFSZ CTR_03         ; Decrement
 0032   0008           00100         RETURN
                       00101 
                       00102 
-                      00103 ;
+                      00103 ; Check RA2
 Warning[207]: Found label after column 1. (CHK_RA2)
 0033                  00104   CHK_RA2
 0033   0805           00105     MOVFW PORTA
 0034   3904           00106     ANDLW B'00000100'     ; Check RA2
 0035   0008           00107     RETURN
                       00108 
+                      00109 ; Check RA3
 Warning[207]: Found label after column 1. (CHK_RA3)
-0036                  00109   CHK_RA3
-0036   0805           00110     MOVFW PORTA
-0037   3908           00111     ANDLW B'00001000'     ; Check RA3
-0038   0008           00112     RETURN
-                      00113 
-3FF9                  00114   END
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  4
+0036                  00110   CHK_RA3
+0036   0805           00111     MOVFW PORTA
+0037   3908           00112     ANDLW B'00001000'     ; Check RA3
+0038   0008           00113     RETURN
+                      00114 
+3FF9                  00115   END
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  4
 
 
 SYMBOL TABLE
@@ -218,7 +219,7 @@ RB0                               00000000
 RB1                               00000001
 RB2                               00000002
 RB3                               00000003
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  5
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  5
 
 
 SYMBOL TABLE
@@ -277,7 +278,7 @@ _IDLOC2                           00002002
 _IDLOC3                           00002003
 _LP_OSC                           00003FFC
 _PWRTE_OFF                        00003FFF
-MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:18:18         PAGE  6
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   4-28-2017  16:30:23         PAGE  6
 
 
 SYMBOL TABLE
