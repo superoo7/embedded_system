@@ -31,6 +31,7 @@ START
                                 ; initialize data direction
     MOVWF TRISB                 ; Set RB<7:0> as outputs
     BSF   TRISA,  2             ; Set RA2 as input
+    BSF   TRISA,  3
     BCF   STATUS, RP0           ; Select Bank 0 (PORT B)
 again
     MOVLW D'246'
@@ -43,9 +44,8 @@ loop
     CALL   Delay
     CALL   Delay
     CALL   Delay
-    CALL   RA2_CHK
-    INCF   COUNT,F
-    INCFSZ CTR_03
+    CALL   RA_CHK
+
     GOTO   loop
     GOTO   again
 
@@ -69,20 +69,46 @@ L2
 
 ; FUNCTION RA2_CHK
 ; Main Function
-; RA2 input, RB{0:A, 1:B, 2:C, 3:D} output
-  RA2_CHK
+; RA2 input (increment), RA3 input (decrement), RB{0:A, 1:B, 2:C, 3:D} output
+  RA_CHK
     CHK_PUSH
-                            ; Move from port A to Working compare with '00000100' check BTFSS
-      MOVFW PORTA
-      ANDLW B'00000100'
-      BTFSS STATUS,     Z   ; Bit test f, skip if Set (skip if (f<b>)=1)
-      GOTO  CHK_PUSH        ; if push button is not pressed
-      CALL  Delay           ; wait until the bouncing
-      CALL  Delay           ; of the push button finishes
-      MOVFW PORTA           ; check RA2 again
-      ANDLW B'00000100'
-      BTFSS STATUS,     Z   ; Bit test f, skip if Set (skip if (f<b>)=1)
-      GOTO  CHK_PUSH
-      RETURN
-; END OF FUNCTION RA_CHK
+        CALL  CHK_RA2         ; Call function to check wether RA2 is 1 or 0
+        BTFSS STATUS,     Z   ; Check RA2
+        GOTO  RA2_FALSE       ; if RA2 is False
+        GOTO  RA2_TRUE        ; if RA2 is True
+      RA2_FALSE
+        CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
+        BTFSS STATUS,     Z   ; Check RA3
+        GOTO  CHK_PUSH        ; RA2 is 0, RA3 is 0 => run again
+        GOTO  DECREMENT       ; RA2 is 0, RA3 is 1 => Decrement
+      RA2_TRUE
+        CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
+        BTFSS STATUS,     Z   ; Check RA3
+        GOTO  INCREMENT       ; RA2 is 1, RA3 is 0 => Increment
+        GOTO  CHK_PUSH        ; RA2 is 1, RA3 is 1 => run again
+      INCREMENT
+        CALL  Delay           ; wait
+        CALL  Delay           ; wait
+        INCF   COUNT,F        ; Increment
+        INCFSZ CTR_03         ; Increment
+        RETURN
+      DECREMENT
+        CALL  Delay           ; wait
+        CALL  Delay           ; wait
+        DECF   COUNT,F        ; Decrement
+        DECFSZ CTR_03         ; Decrement
+        RETURN
+
+
+;
+  CHK_RA2
+    MOVFW PORTA
+    ANDLW B'00000100'     ; Check RA2
+    RETURN
+
+  CHK_RA3
+    MOVFW PORTA
+    ANDLW B'00001000'     ; Check RA3
+    RETURN
+
   END
