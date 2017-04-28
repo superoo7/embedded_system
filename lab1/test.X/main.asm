@@ -72,6 +72,7 @@ L2
 ; RA2 input (increment), RA3 input (decrement), RB{0:A, 1:B, 2:C, 3:D} output
   RA_CHK
     CHK_PUSH
+        CALL  Delay
         CALL  CHK_RA2         ; Call function to check wether RA2 is 1 or 0
         BTFSS STATUS,     Z   ; Check RA2
         GOTO  RA2_FALSE       ; if RA2 is False
