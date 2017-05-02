@@ -15,9 +15,10 @@
   ; MAKE PORT
   CTR_01 EQU 0x20
   CTR_02 EQU 0x21
-  CTR_03 EQU 0x22
-  COUNT  EQU 0x23
-  ; TODO ADD INTERRUPTS HERE IF USED
+  CTR_03 EQU 0x22					  ; Counter for increment
+  CTR_04 EQU 0x23					  ; Counter for decrement
+  COUNT  EQU 0x24
+  
   MAIN_PROG CODE                                          ; let linker place main program
 
 START
@@ -33,14 +34,46 @@ START
     BSF   TRISA,  2             ; Set RA2 as input
     BSF   TRISA,  3             ; Set RA3 as input
     BCF   STATUS, RP0           ; Select Bank 0 (PORT B)
-again
+
+    ; For CTR_03 (Increment)
     ; 246 -> 0
     ; 255 -> 9
     ; when 256 it will reset
+    ; For CTR_04 (DECREMENT)
+    ; 10  -> 9
+    ; 1   -> 0
     
+    ; start from 0
+again1    
+    ; When reset start from 0
+    ; CTR_03 (Increment)
     MOVLW D'246'
     MOVWF CTR_03
+    MOVLW D'1'
+    MOVWF CTR_04
+    
+    ; Count start from 0
     CLRF  COUNT
+    
+    GOTO loop
+    
+    
+    ; start from 9
+again2
+    ; when reset start from 9
+    ; CTR_04 (Decrement)
+    MOVLW D'255'
+    MOVWF CTR_03
+    MOVLW D'10'
+    MOVWF CTR_04
+    
+    ; Count start from 9
+    ClRF COUNT
+    MOVLW D'9'
+    MOVWF COUNT
+    
+    GOTO loop
+    
 loop
     MOVFW  COUNT
     MOVWF  PORTB
@@ -49,9 +82,8 @@ loop
     CALL   Delay
     CALL   Delay
     CALL   RA_CHK
-
     GOTO   loop
-    GOTO   again
+
 
 ; Function Delay
 ; CTR_01=0x20; CTR_02=0x21; CTR_03=0x22;
@@ -84,24 +116,37 @@ L2
         CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
         BTFSS STATUS,     Z   ; Check RA3
         GOTO  CHK_PUSH        ; RA2 is 0, RA3 is 0 => run again
-        GOTO  DECREMENT       ; RA2 is 0, RA3 is 1 => Decrement
+        GOTO  DECREMENT1       ; RA2 is 0, RA3 is 1 => Decrement
       RA2_TRUE
         CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
         BTFSS STATUS,     Z   ; Check RA3
-        GOTO  INCREMENT       ; RA2 is 1, RA3 is 0 => Increment
+        GOTO  INCREMENT1      ; RA2 is 1, RA3 is 0 => Increment
         GOTO  CHK_PUSH        ; RA2 is 1, RA3 is 1 => run again
-      INCREMENT
+      INCREMENT1
         CALL   Delay           ; wait
         CALL   Delay           ; wait
         INCF   COUNT,F         ; Increment
-        INCFSZ CTR_03          ; Increment
-        RETURN
-      DECREMENT
+        INCFSZ CTR_03          ; Increment in CTR_03
+        GOTO   INCREMENT2      ; if 246<=CTR_03<=255
+	GOTO   again1	       ; When CTR_03 = 256 (>9)
+	
+      INCREMENT2
+	INCFSZ CTR_04	       ; add 1 to CTR_04 (1<=CTR_04<=10)
+	RETURN
+	GOTO   again1	       ; if code went wrong, reset
+	
+      DECREMENT1
         CALL   Delay           ; wait
         CALL   Delay           ; wait
         DECF   COUNT,F         ; Decrement
-        DECFSZ CTR_03          ; Decrement
-        RETURN
+        DECFSZ CTR_04          ; Decrement in CTR_04
+        GOTO   DECREMENT2       ; if 1<=CTR_04<=10
+	GOTO   again2	       ; When CTR_04 = 0 (0<)
+	
+      DECREMENT2
+	DECFSZ CTR_03	       ; minus 1 to CTR_03 (246<=CTR_03<=255)
+	RETURN
+	GOTO   again1	       ; if code went wrong, reset
 
 
 ; Check RA2

@@ -2,18 +2,23 @@ Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 11 : F
 Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 16 : Found label after column 1. (CTR_01)
 Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 17 : Found label after column 1. (CTR_02)
 Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 18 : Found label after column 1. (CTR_03)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 19 : Found label after column 1. (COUNT)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 21 : Found label after column 1. (MAIN_PROG)
-Message[302] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 32 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 19 : Found label after column 1. (CTR_04)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 20 : Found label after column 1. (COUNT)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 22 : Found label after column 1. (MAIN_PROG)
 Message[302] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 34 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 77 : Found label after column 1. (RA_CHK)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 78 : Found label after column 1. (CHK_PUSH)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 83 : Found label after column 1. (RA2_FALSE)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 88 : Found label after column 1. (RA2_TRUE)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 93 : Found label after column 1. (INCREMENT)
-Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 97 : Using default destination of 1 (file).
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 99 : Found label after column 1. (DECREMENT)
-Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 103 : Using default destination of 1 (file).
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 108 : Found label after column 1. (CHK_RA2)
-Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 114 : Found label after column 1. (CHK_RA3)
+Message[302] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 35 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 109 : Found label after column 1. (RA_CHK)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 110 : Found label after column 1. (CHK_PUSH)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 115 : Found label after column 1. (RA2_FALSE)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 120 : Found label after column 1. (RA2_TRUE)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 125 : Found label after column 1. (INCREMENT1)
+Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 129 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 133 : Found label after column 1. (INCREMENT2)
+Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 134 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 138 : Found label after column 1. (DECREMENT1)
+Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 142 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 146 : Found label after column 1. (DECREMENT2)
+Message[305] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 147 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 153 : Found label after column 1. (CHK_RA2)
+Warning[207] /Users/superoo7/Files/Programming/PIC16/lab1/test.X/main.asm 159 : Found label after column 1. (CHK_RA3)
