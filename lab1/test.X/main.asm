@@ -1,7 +1,7 @@
 ; created by LWH
 ; use 2 input switch, one can count from D'0 to D'9 the other one in reverse order
-; TO DO
-; - Create Tris C as a third input
+; TO DO LIST
+; Add decrement mechanism
 
   #include "p16F84A.inc"
   ; CONFIG
@@ -34,6 +34,10 @@ START
     BSF   TRISA,  3             ; Set RA3 as input
     BCF   STATUS, RP0           ; Select Bank 0 (PORT B)
 again
+    ; 246 -> 0
+    ; 255 -> 9
+    ; when 256 it will reset
+    
     MOVLW D'246'
     MOVWF CTR_03
     CLRF  COUNT
@@ -72,8 +76,6 @@ L2
 ; RA2 input (increment), RA3 input (decrement), RB{0:A, 1:B, 2:C, 3:D} output
   RA_CHK
     CHK_PUSH
-        CALL  Delay
-        CALL  Delay
         CALL  CHK_RA2         ; Call function to check wether RA2 is 1 or 0
         BTFSS STATUS,     Z   ; Check RA2
         GOTO  RA2_FALSE       ; if RA2 is False
@@ -91,14 +93,14 @@ L2
       INCREMENT
         CALL   Delay           ; wait
         CALL   Delay           ; wait
-        INCF   COUNT,F        ; Increment
-        INCFSZ CTR_03         ; Increment
+        INCF   COUNT,F         ; Increment
+        INCFSZ CTR_03          ; Increment
         RETURN
       DECREMENT
         CALL   Delay           ; wait
         CALL   Delay           ; wait
-        DECF   COUNT,F        ; Decrement
-        DECFSZ CTR_03         ; Decrement
+        DECF   COUNT,F         ; Decrement
+        DECFSZ CTR_03          ; Decrement
         RETURN
 
 
