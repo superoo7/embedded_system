@@ -1,7 +1,7 @@
 #include "p16F84A.inc"
 ; CONFIG
 ; __config 0xFFF9
- __CONFIG _FOSC_XT & _WDTE_OFF & _PWRTE_OFF & _CP_OFF
+    __CONFIG _FOSC_XT & _WDTE_OFF & _PWRTE_OFF & _CP_OFF
 
 RES_VECT  CODE    0x0000   ; processor reset vector
     GOTO    START                        ; go to beginning of program
@@ -9,7 +9,7 @@ RES_VECT  CODE    0x0000   ; processor reset vector
 CTR_01      EQU     0x20
 CTR_02      EQU     0x21
 CTR_03      EQU     0x22
-COUNT      EQU     0x23
+COUNT       EQU     0x23
 
 ; TODO ADD INTERRUPTS HERE IF USED
 
