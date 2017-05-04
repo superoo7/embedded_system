@@ -1,0 +1,49 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu May  4 20:30:47 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                MAIN_PROG       code   0x000003    program   0x000052
+.config_2007_BUILD/DEFAULT/PRODUCTION/XORMAIN       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00002b      
+                            0x002007    0x002007      
+            45 out of 1094 program addresses used, program memory utilization is 4%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                 CHK_PUSH   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    Delay   0x000018    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L1   0x00001a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L2   0x00001c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                  RA2_CHK   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    START   0x000003    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    again   0x00000a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                     loop   0x00000d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    START   0x000003    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    again   0x00000a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                     loop   0x00000d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    Delay   0x000018    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L1   0x00001a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L2   0x00001c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 CHK_PUSH   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                  RA2_CHK   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+
+
