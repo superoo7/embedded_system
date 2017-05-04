@@ -94,9 +94,9 @@ MAIN_PROG CODE ; let linker place main program
 		ANDLW B'00000100'
 		BTFSS STATUS, Z
 		GOTO  CHK_PUSH			 ; if false, restart
-		INCF  COUNTER			 ; +1 Counter
+		INCF  COUNT			 ; +1 Counter
 		MOVLW D'12'
-		XORWF COUNTER, 0		 ; check wether counter = 12 (disp = 10)
+		XORWF COUNT, 0		 ; check wether counter = 12 (disp = 10)
 		GOTO INCREMENT2
 		GOTO again1			 ; counter = 12, reset to 0
 		
@@ -111,9 +111,9 @@ MAIN_PROG CODE ; let linker place main program
 		ANDLW B'00001000'
 		BTFSS STATUS, Z
 		GOTO  CHK_PUSH			 ; if false, restart
-		DECF  COUNTER			 ; -1 Counter
+		DECF  COUNT			 ; -1 Counter
 		MOVLW D'1'
-		XORWF COUNTER, 0		 ; check wether counter = 1  (disp = -1)
+		XORWF COUNT, 0		 ; check wether counter = 1  (disp = -1)
 		GOTO DECREMENT2
 		GOTO again2			 ; counter = 1, set to 9
 	
