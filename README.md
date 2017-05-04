@@ -6,5 +6,5 @@ Lab1
 		
 		
 		
-Created by [superoo7](http://superoo7)user_value = "input:"
+Created by [superoo7](http://superoo7)
 

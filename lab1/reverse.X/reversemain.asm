@@ -27,9 +27,11 @@ START
     BSF             TRISA,2    	; Set RA2 as input
     BCF     STATUS, RP0  ; Select Bank 0 (PORT B)                    
 again    
-    MOVLW   D'246'
+    MOVLW   D'10'
     MOVWF   CTR_03
     CLRF    COUNT
+    MOVLW   D'9'
+    MOVWF   COUNT
 loop    
     MOVFW   COUNT
     MOVWF   PORTB
@@ -38,8 +40,8 @@ loop
     CALL    Delay
     CALL    Delay
     CALL    RA2_CHK
-    INCF    COUNT,F
-    INCFSZ  CTR_03
+    DECF    COUNT,F
+    DECFSZ  CTR_03
     GOTO    loop        
     GOTO    again
 
