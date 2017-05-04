@@ -4,7 +4,7 @@
  __CONFIG _FOSC_XT & _WDTE_OFF & _PWRTE_OFF & _CP_OFF
 
 RES_VECT  CODE    0x0000   ; processor reset vector
-GOTO    START                        ; go to beginning of program
+    GOTO    START                        ; go to beginning of program
 
 CTR_01      EQU     0x20
 CTR_02      EQU     0x21
@@ -59,17 +59,17 @@ L2
     RETURN
 
 RA2_CHK
-CHK_PUSH
-MOVFW   PORTA
-ANDLW   B'00000100'
-BTFSS   STATUS, Z
-GOTO    CHK_PUSH    ; if push button is not pressed
-CALL    Delay      	    ; wait until the bouncing
-CALL    Delay       	    ; of the push button finishes
-MOVFW   PORTA         ; check RA2 again
-ANDLW   B'00000100'
-BTFSS   STATUS,Z    
-GOTO    CHK_PUSH
-RETURN
+    CHK_PUSH
+    MOVFW   PORTA
+    ANDLW   B'00000100'
+    BTFSS   STATUS, Z
+    GOTO    CHK_PUSH    ; if push button is not pressed
+    CALL    Delay      	    ; wait until the bouncing
+    CALL    Delay       	    ; of the push button finishes
+    MOVFW   PORTA         ; check RA2 again
+    ANDLW   B'00000100'
+    BTFSS   STATUS,Z    
+    GOTO    CHK_PUSH
+    RETURN
 
  END
