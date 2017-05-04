@@ -59,93 +59,76 @@ MAIN_PROG CODE ; let linker place main program
 	    CALL Delay
 	    ; End Delay
 	    
+	    CALL RA_CHECK
+	    GOTO loop
+	    
+	    
 	; XOR
 	; | 0 | 0 | = 0 
 	; | 0 | 1 | = 1 
 	; | 1 | 0 | = 1
 	; | 1 | 1 | = 0 
 	
-	CHK_PUSH
+    
+    RA_CHECK
+      CHK_PUSH
+	MOVFW PORTA
+	ANDLW B'00000100'		
+	MOVFW PORTA
+	BTFSS STATUS, Z
+	GOTO  RA2_FALSE			; 0 | ?
+	GOTO  RA2_TRUE			; 1 | ?
+
+	RA2_TRUE		    		; 1 | ?
 	    MOVFW PORTA
-	    ANDLW B'00000100'		
-	    MOVFW PORTA
+	    ANDLW B'00001000'		; Check RA3
 	    BTFSS STATUS, Z
-	    GOTO  RA2_FALSE			; 0 | ?
-	    GOTO  RA2_TRUE			; 1 | ?
+	    GOTO  INCREMENT1    	        ; 1 | 0 => Increment
+	    GOTO  CHK_PUSH			; 1 | 1 => Restart
 
-	    RA2_TRUE		    		; 1 | ?
-		MOVFW PORTA
-		ANDLW B'00001000'		; Check RA3
-		BTFSS STATUS, Z
-		GOTO  INCREMENT1    	        ; 1 | 0 => Increment
-		GOTO  CHK_PUSH			; 1 | 1 => Restart
-		
-	    RA2_FALSE				; 0 | 1
-		MOVFW PORTA
-		ANDLW B'00001000'		; Check RA3
-		BTFSS STATUS, Z
-		GOTO  CHK_PUSH    	        ; 0 | 0 => Restart
-		GOTO  DECREMENT1		; 0 | 1 => Decrement 
-		
-	    INCREMENT1	    
-		CALL Delay			 ; wait until the bouncing
-		CALL Delay			 ; of the push button finishes
-		MOVFW PORTA
-		ANDLW B'00000100'
-		BTFSS STATUS, Z
-		GOTO  CHK_PUSH			 ; if false, restart
-		INCF  COUNT			 ; +1 Counter
-		MOVLW D'12'
-		XORWF COUNT, 0		 ; check wether counter = 12 (disp = 10)
-		GOTO INCREMENT2
-		GOTO again1			 ; counter = 12, reset to 0
-		
-	    INCREMENT2				 ; counter added, need to add display
-		INCF DISPLAY
-		GOTO loop			 ; Start again
-		
-	    DECREMENT1
-		CALL Delay			 ; wait until the bouncing
-		CALL Delay			 ; of the push button finishes
-		MOVFW PORTA
-		ANDLW B'00001000'
-		BTFSS STATUS, Z
-		GOTO  CHK_PUSH			 ; if false, restart
-		DECF  COUNT			 ; -1 Counter
-		MOVLW D'1'
-		XORWF COUNT, 0		 ; check wether counter = 1  (disp = -1)
-		GOTO DECREMENT2
-		GOTO again2			 ; counter = 1, set to 9
-	
-	    DECREMENT2
-		DECF DISPLAY
-		GOTO loop
-	    
-	    
-	    
-	    
-	    
-	    
-	
-	
-	
-;    again
-;	MOVLW D'246'
-;	MOVWF CTR_03
-;	CLRF COUNT
-;    loop
-;	MOVFW COUNT
-;	MOVWF PORTB
-;	CALL Delay
-;	CALL Delay
-;	CALL Delay
-;	CALL Delay
-;	CALL RA2_CHK
-;	INCF COUNT,F
-;	INCFSZ CTR_03
-;	GOTO loop
-;	GOTO again
+	RA2_FALSE				; 0 | 1
+	    MOVFW PORTA
+	    ANDLW B'00001000'		; Check RA3
+	    BTFSS STATUS, Z
+	    GOTO  CHK_PUSH    	        ; 0 | 0 => Restart
+	    GOTO  DECREMENT1		; 0 | 1 => Decrement 
 
+	INCREMENT1	    
+	    CALL Delay			 ; wait until the bouncing
+	    CALL Delay			 ; of the push button finishes
+	    MOVFW PORTA
+	    ANDLW B'00000100'
+	    BTFSS STATUS, Z
+	    GOTO  CHK_PUSH			 ; if false, restart
+	    INCF  COUNT			 ; +1 Counter
+	    MOVLW D'12'
+	    XORWF COUNT, 0		 ; check wether counter = 12 (disp = 10)
+	    GOTO INCREMENT2
+	    GOTO again1			 ; counter = 12, reset to 0
+
+	INCREMENT2				 ; counter added, need to add display
+	    INCF DISPLAY
+	    RETURN			 ; Start again
+
+	DECREMENT1
+	    CALL Delay			 ; wait until the bouncing
+	    CALL Delay			 ; of the push button finishes
+	    MOVFW PORTA
+	    ANDLW B'00001000'
+	    BTFSS STATUS, Z
+	    GOTO  CHK_PUSH			 ; if false, restart
+	    DECF  COUNT			 ; -1 Counter
+	    MOVLW D'1'
+	    XORWF COUNT, 0		 ; check wether counter = 1  (disp = -1)
+	    GOTO DECREMENT2
+	    GOTO again2			 ; counter = 1, set to 9
+
+	DECREMENT2
+	    DECF DISPLAY
+	    RETURN
+	    
+	    
+	    
 	
     Delay
 	MOVLW 0xFF

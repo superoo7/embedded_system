@@ -1,12 +1,12 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Thu May  4 21:38:50 2017
+Linker Map File - Created Thu May  4 21:55:28 2017
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                  RES_VECT       code   0x000000    program   0x000002
                    .cinit    romdata   0x000001    program   0x000004
-                MAIN_PROG       code   0x000003    program   0x00009e
+                MAIN_PROG       code   0x000003    program   0x0000a2
 .config_2007_BUILD/DEFAULT/PRODUCTION/XORMAIN       code   0x002007    program   0x000002
 
 
@@ -14,25 +14,26 @@ Linker Map File - Created Thu May  4 21:38:50 2017
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x000051      
+                            0x000000    0x000053      
                             0x002007    0x002007      
-            83 out of 1094 program addresses used, program memory utilization is 7%
+            85 out of 1094 program addresses used, program memory utilization is 7%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                 CHK_PUSH   0x00001f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               DECREMENT1   0x00003c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               DECREMENT2   0x000047    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                    Delay   0x000049    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               INCREMENT1   0x00002f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               INCREMENT2   0x00003a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                       L1   0x00004b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                       L2   0x00004d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                RA2_FALSE   0x00002a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                 RA2_TRUE   0x000025    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 CHK_PUSH   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               DECREMENT1   0x00003e    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               DECREMENT2   0x000049    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    Delay   0x00004b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               INCREMENT1   0x000031    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               INCREMENT2   0x00003c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L1   0x00004d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L2   0x00004f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                RA2_FALSE   0x00002c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 RA2_TRUE   0x000027    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 RA_CHECK   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
                     START   0x000003    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
                    again1   0x00000b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
                    again2   0x000012    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
@@ -47,15 +48,16 @@ Linker Map File - Created Thu May  4 21:38:50 2017
                    again1   0x00000b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
                    again2   0x000012    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
                      loop   0x000019    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                 CHK_PUSH   0x00001f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                 RA2_TRUE   0x000025    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                RA2_FALSE   0x00002a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               INCREMENT1   0x00002f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               INCREMENT2   0x00003a    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               DECREMENT1   0x00003c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-               DECREMENT2   0x000047    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                    Delay   0x000049    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                       L1   0x00004b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
-                       L2   0x00004d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 CHK_PUSH   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 RA_CHECK   0x000021    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                 RA2_TRUE   0x000027    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                RA2_FALSE   0x00002c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               INCREMENT1   0x000031    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               INCREMENT2   0x00003c    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               DECREMENT1   0x00003e    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+               DECREMENT2   0x000049    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                    Delay   0x00004b    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L1   0x00004d    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
+                       L2   0x00004f    program     static /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm
 
 
