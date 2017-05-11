@@ -1,7 +1,5 @@
-; created by LWH
 ; use 2 input switch, one can count from D'0 to D'9 the other one in reverse order
-; TO DO LIST
-; Add decrement mechanism
+
 
   #include "p16F84A.inc"
   ; CONFIG
@@ -17,7 +15,7 @@
   CTR_02 EQU 0x21
   CTR_03 EQU 0x22					  ; Counter for increment
   CTR_04 EQU 0x23					  ; Counter for decrement
-  COUNT  EQU 0x24
+  COUNT  EQU 0x24					  ; Counter to Port B
   
   MAIN_PROG CODE                                          ; let linker place main program
 
@@ -85,7 +83,7 @@ loop
     GOTO   loop
 
 
-; Function Delay
+; Subroutine Delay
 ; CTR_01=0x20; CTR_02=0x21; CTR_03=0x22;
 ; Meant to delay the microcontroller
 ; FUNCTION DELAY
@@ -101,31 +99,31 @@ L2
     DECFSZ  CTR_01,F
     GOTO    L1
     RETURN
-; END OF FUNCTION Delay
+; END OF SUBROUTINE Delay
 
 ; FUNCTION RA2_CHK
 ; Main Function
 ; RA2 input (increment), RA3 input (decrement), RB{0:A, 1:B, 2:C, 3:D} output
   RA_CHK
     CHK_PUSH
-        CALL  CHK_RA2         ; Call function to check wether RA2 is 1 or 0
-        BTFSS STATUS,     Z   ; Check RA2
-        GOTO  RA2_FALSE       ; if RA2 is False
-        GOTO  RA2_TRUE        ; if RA2 is True
+        CALL  CHK_RA2          ; Call function to check wether RA2 is 1 or 0
+        BTFSS STATUS,     Z    ; Check RA2
+        GOTO  RA2_FALSE        ; if RA2 is False
+        GOTO  RA2_TRUE         ; if RA2 is True
       RA2_FALSE
-        CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
-        BTFSS STATUS,     Z   ; Check RA3
-        GOTO  CHK_PUSH        ; RA2 is 0, RA3 is 0 => run again
+        CALL  CHK_RA3          ; Call function to check wether RA3 is 1 or 0
+        BTFSS STATUS,     Z    ; Check RA3
+        GOTO  CHK_PUSH         ; RA2 is 0, RA3 is 0 => run again
         GOTO  DECREMENT1       ; RA2 is 0, RA3 is 1 => Decrement
       RA2_TRUE
-        CALL  CHK_RA3         ; Call function to check wether RA3 is 1 or 0
-        BTFSS STATUS,     Z   ; Check RA3
-        GOTO  INCREMENT1      ; RA2 is 1, RA3 is 0 => Increment
-        GOTO  CHK_PUSH        ; RA2 is 1, RA3 is 1 => run again
+        CALL  CHK_RA3          ; Call function to check wether RA3 is 1 or 0
+        BTFSS STATUS,     Z    ; Check RA3
+        GOTO  INCREMENT1       ; RA2 is 1, RA3 is 0 => Increment
+        GOTO  CHK_PUSH         ; RA2 is 1, RA3 is 1 => run again
       INCREMENT1
         CALL   Delay           ; wait
         CALL   Delay           ; wait
-        INCF   COUNT,F         ; Increment
+        INCF   COUNT,     F    ; Increment
         INCFSZ CTR_03          ; Increment in CTR_03
         GOTO   INCREMENT2      ; if 246<=CTR_03<=255
 	GOTO   again1	       ; When CTR_03 = 256 (>9)
@@ -138,9 +136,9 @@ L2
       DECREMENT1
         CALL   Delay           ; wait
         CALL   Delay           ; wait
-        DECF   COUNT,F         ; Decrement
+        DECF   COUNT,     F    ; Decrement
         DECFSZ CTR_04          ; Decrement in CTR_04
-        GOTO   DECREMENT2       ; if 1<=CTR_04<=10
+        GOTO   DECREMENT2      ; if 1<=CTR_04<=10
 	GOTO   again2	       ; When CTR_04 = 0 (0<)
 	
       DECREMENT2
