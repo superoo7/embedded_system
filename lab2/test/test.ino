@@ -1,4 +1,5 @@
 // Potentiometer
+// pin A0
 const int val = 0;
 
 // Motor
@@ -6,7 +7,7 @@ int motor[] = {5,6}; // 5,6 - pwm
 const int lowerVal = 0;
 int higherVal;
 const float maxSpeed = 255.0;
-const int minimumSpeed = 100;
+const int minimumSpeed = 93;
 
 // led
 const int led1 = 7;   // red
@@ -14,7 +15,9 @@ const int led2 = 8;   // green
 
 // Interrupt
 // for ISR, has to be volatile when is used in interrupt
-volatile int interruptControl;
+// volatile int interruptControl;
+volatile byte state = LOW;
+
 const int ledInterrupt = 13;
 
 // Declare Function
@@ -24,7 +27,9 @@ void interrupt();
 void setup() {
 
   // create interrupt at Digital pin 2
-  attachInterrupt(0, interruptFunction, HIGH);
+  // attachInterrupt(0, interruptFunction, RISING);
+  attachInterrupt(0, toggle, CHANGE);
+  attachInterrupt(0, toggle, CHANGE);
   pinMode(ledInterrupt, OUTPUT);
 
   // Declare motor output
@@ -46,8 +51,9 @@ void setup() {
 void loop() {
   
 
-  if (interruptControl) {
+  if (state) {
     interrupt();
+    
    
     
   } else {
@@ -123,22 +129,23 @@ void loop() {
     
     
 
-    delay(300);
+    delay(100);
 
   }
   
-  delay(700);
+  delay(150);
 
 }
 
 
 
-void interruptFunction() {
-  interruptControl = 1;
+void toggle() {
+  state = !state;
 }
 
 void reset() {
   // reset
+  higherVal = 0;
   digitalWrite(led1, LOW);
   digitalWrite(led2, LOW);  
   analogWrite(motor[0], lowerVal);
