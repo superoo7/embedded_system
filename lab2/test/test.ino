@@ -6,10 +6,12 @@ const int val = 0;
 int motor[] = {5,6}; // 5,6 - pwm
 const int lowerVal = 0;
 int higherVal;
-const float maxSpeed = 255.0;
-const int minimumSpeed = 93;
+const float maximumSpeed = 255;
+const int minimumSpeed = 70;
 
-// led
+int delaySpeed;
+
+// LED
 const int led1 = 7;   // red
 const int led2 = 8;   // green
 
@@ -17,17 +19,17 @@ const int led2 = 8;   // green
 // for ISR, has to be volatile when is used in interrupt
 // volatile int interruptControl;
 volatile byte state = LOW;
-
 const int ledInterrupt = 13;
 
 // Declare Function
+void toggle();
 void reset();
 void interrupt();
+void motorRun(int A, int B, int T);
 
 void setup() {
 
   // create interrupt at Digital pin 2
-  // attachInterrupt(0, interruptFunction, RISING);
   attachInterrupt(0, toggle, CHANGE);
   attachInterrupt(0, toggle, CHANGE);
   pinMode(ledInterrupt, OUTPUT);
@@ -78,18 +80,15 @@ void loop() {
 
      // higherVal (0<=X<=200) 
      // 0 <= analogVal1 < 300
-     float higherValA = maxSpeed - (analogVal1 / 300.0 * maxSpeed);
+     float higherValA = maximumSpeed - (analogVal1 / 300.0 * maximumSpeed);
      higherVal = (int) higherValA;
-
-     // Make minimum speed PWM = minimumSpeed
-     if (higherVal <= minimumSpeed) {
-      higherVal = minimumSpeed;
-     }
-
      
+
+     // A -> 0
+     // B -> 1
+
+     motorRun(0,1,higherVal);
      
-     analogWrite(motor[0], lowerVal);
-     analogWrite(motor[1], higherVal);
     }
     // if 723 <= analogVal1 < 1024
     // Turn Right / Clockwise
@@ -105,17 +104,11 @@ void loop() {
      // higherVal (0<=X<=255) 
      // 723 <= analogVal1 < 1024
      int convertedVal = analogVal1 - 724;
-     float higherValB = (convertedVal / 300.0 * maxSpeed);
+     float higherValB = (convertedVal / 300.0 * maximumSpeed);
      higherVal = (int) higherValB;
 
-     // Make minimum speed PWM = minimumSpeed
-     if (higherVal <= minimumSpeed) {
-      higherVal = minimumSpeed;
-     }
      
-     analogWrite(motor[1], lowerVal);
-     analogWrite(motor[0], higherVal);
-      
+     motorRun(1,0,higherVal);
     }
     // if 300 <= analogVal1 <= 722
     // Pause
@@ -127,13 +120,9 @@ void loop() {
 
     Serial.println(higherVal);
     
-    
-
-    delay(100);
-
   }
   
-  delay(150);
+  delay(80);
 
 }
 
@@ -156,10 +145,36 @@ void reset() {
 void interrupt() {
   reset();
   digitalWrite(ledInterrupt, HIGH);
-  delay(300);
+  delay(150);
   digitalWrite(ledInterrupt, LOW);
-  delay(300);
+  delay(150);
 }
 
-// MOTOR
+// Motor Run
+// A -> 0
+// B -> changing
+void motorRun(int A, int B, int T)
+{
+  T = (maximumSpeed - higherVal);
+  int maxS = maximumSpeed - T;
+
+  if (maxS <= 60)
+  {
+    maxS = 60;
+  }
+  
+  float _T = T / 2;
+  T = (int) _T;
+  
+  analogWrite(motor[A], lowerVal);
+  analogWrite(motor[B], maxS);
+  delay(80);
+  analogWrite(motor[B], minimumSpeed);
+  delay(T);
+  analogWrite(motor[B], maxS);
+  delay(80);
+  analogWrite(motor[B], minimumSpeed);
+  delay(T);
+  analogWrite(motor[B], maxS);     
+}
 
