@@ -1,0 +1,4 @@
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/reverse.X/reversemain.asm 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/reverse.X/reversemain.asm 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/reverse.X/reversemain.asm 44 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/reverse.X/reversemain.asm 62 : Found label after column 1. (CHK_PUSH)

@@ -1,0 +1,238 @@
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  22:43:28         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 #include "p16F84A.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 30 2017
+                      00005 ;  MPASM PIC16F84A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2017 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00209         LIST
+                      00002 ; CONFIG
+                      00003 ; __config 0xFFF9
+2007   3FF9           00004     __CONFIG _FOSC_XT & _WDTE_OFF & _PWRTE_OFF & _CP_OFF
+                      00005 
+Warning[207]: Found label after column 1. (RES_VECT)
+                      00006     RES_VECT  CODE    0x0000   ; processor reset vector
+0000   2???           00007     GOTO    START                        ; go to beginning of program
+                      00008 
+Warning[207]: Found label after column 1. (CTR_01)
+  00000020            00009     CTR_01      EQU     0x20
+Warning[207]: Found label after column 1. (CTR_02)
+  00000021            00010     CTR_02      EQU     0x21
+Warning[207]: Found label after column 1. (CTR_03)
+  00000022            00011     CTR_03      EQU     0x22
+Warning[207]: Found label after column 1. (COUNT)
+  00000023            00012     COUNT      EQU     0x23
+                      00013 
+                      00014 ; TODO ADD INTERRUPTS HERE IF USED
+                      00015 
+                      00016 MAIN_PROG CODE               ; let linker place main program
+                      00017 
+0000                  00018 START
+0000   1283           00019     BCF         STATUS, RP0 ; Select Bank 0 (PORT B)
+0001   0186           00020     CLRF        PORTB            ; Initialize PORT B by
+                      00021                                          ; clearing output
+                      00022                                          ; data latches
+0002   1683           00023     BSF         STATUS, RP0 ; Select Bank 1 (TRIS B)
+0003   3000           00024     MOVLW       0x0             ; Value used to
+                      00025                                          ; initialize data direction
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   0086           00026     MOVWF       TRISB   ; Set RB<7:0> as outputs
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0005   1505           00027     BSF             TRISA,2     ; Set RA2 as input
+0006   1283           00028     BCF     STATUS, RP0  ; Select Bank 0 (PORT B)                    
+0007                  00029 again    
+0007   30F6           00030     MOVLW   D'246'
+0008   00A2           00031     MOVWF   CTR_03
+0009   01A3           00032     CLRF    COUNT
+000A                  00033 loop    
+000A   0823           00034     MOVFW   COUNT
+000B   0086           00035     MOVWF   PORTB
+000C   2???           00036     CALL    Delay
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  22:43:28         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000D   2???           00037     CALL    Delay
+000E   2???           00038     CALL    Delay
+000F   2???           00039     CALL    Delay
+0010   2???           00040     CALL    RA2_CHK
+0011   0AA3           00041     INCF    COUNT,F
+Message[305]: Using default destination of 1 (file).
+0012   0FA2           00042     INCFSZ  CTR_03
+0013   2???           00043     GOTO    loop        
+0014   2???           00044     GOTO    again
+                      00045 
+0015                  00046 Delay
+0015   30FF           00047     MOVLW   0xFF
+0016   00A0           00048     MOVWF   CTR_01
+0017                  00049 L1  
+0017   30FF           00050     MOVLW   0xFF
+0018   00A1           00051     MOVWF   CTR_02
+0019                  00052 L2
+0019   0BA1           00053     DECFSZ  CTR_02,F
+001A   2???           00054     GOTO    L2
+001B   0BA0           00055     DECFSZ  CTR_01,F
+001C   2???           00056     GOTO    L1
+001D   0008           00057     RETURN
+                      00058 
+001E                  00059 RA2_CHK
+Warning[207]: Found label after column 1. (CHK_PUSH)
+001E                  00060     CHK_PUSH
+001E   0805           00061     MOVFW   PORTA
+001F   3904           00062     ANDLW   B'00000100'
+0020   1D03           00063     BTFSS   STATUS, Z
+0021   2???           00064     GOTO    CHK_PUSH    ; if push button is not pressed
+0022   2???           00065     CALL    Delay           ; wait until the bouncing
+0023   2???           00066     CALL    Delay                   ; of the push button finishes
+0024   0805           00067     MOVFW   PORTA         ; check RA2 again
+0025   3904           00068     ANDLW   B'00000100'
+0026   1D03           00069     BTFSS   STATUS,Z    
+0027   2???           00070     GOTO    CHK_PUSH
+0028   0008           00071     RETURN
+                      00072 
+3FF9                  00073  END
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  22:43:28         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+CHK_PUSH                          0000001E
+COUNT                             00000023
+CTR_01                            00000020
+CTR_02                            00000021
+CTR_03                            00000022
+DC                                00000001
+Delay                             00000015
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+L1                                00000017
+L2                                00000019
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA2_CHK                           0000001E
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  22:43:28         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+START                             00000000
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  22:43:28         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+again                             00000007
+loop                              0000000A
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+

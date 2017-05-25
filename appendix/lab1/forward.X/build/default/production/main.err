@@ -1,0 +1,9 @@
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 6 : Found label after column 1. (RES_VECT)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 9 : Found label after column 1. (CTR_01)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 10 : Found label after column 1. (CTR_02)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 11 : Found label after column 1. (CTR_03)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 12 : Found label after column 1. (COUNT)
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 42 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/forward.X/main.asm 60 : Found label after column 1. (CHK_PUSH)

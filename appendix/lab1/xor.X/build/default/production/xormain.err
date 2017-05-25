@@ -1,0 +1,28 @@
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 6 : Found label after column 1. (RES_VECT)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 12 : Found label after column 1. (CTR_01)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 13 : Found label after column 1. (CTR_02)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 15 : Found label after column 1. (COUNT)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 16 : Found label after column 1. (DISPLAY)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 20 : Found label after column 1. (START)
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 31 : Found label after column 1. (again1)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 42 : Found label after column 1. (again2)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 51 : Found label after column 1. (loop)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 73 : Found label after column 1. (RA_CHECK)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 74 : Found label after column 1. (CHK_PUSH)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 82 : Found label after column 1. (RA2_TRUE)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 89 : Found label after column 1. (RA2_FALSE)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 96 : Found label after column 1. (INCREMENT1)
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 103 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 109 : Found label after column 1. (INCREMENT2)
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 110 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 113 : Found label after column 1. (DECREMENT1)
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 120 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 126 : Found label after column 1. (DECREMENT2)
+Message[305] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 127 : Using default destination of 1 (file).
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 133 : Found label after column 1. (Delay)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 136 : Found label after column 1. (L1)
+Warning[207] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 139 : Found label after column 1. (L2)
+Warning[205] /Users/superoo7/Files/Programming/Assembly/PIC/PIC16/lab1/xor.X/xormain.asm 147 : Found directive in column 1. (END)

@@ -1,0 +1,350 @@
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001     #include "p16F84A.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 30 2017
+                      00005 ;  MPASM PIC16F84A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2017 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00209         LIST
+                      00002      ; CONFIG
+                      00003      ; __config 0xFFF9
+2007   3FF9           00004      __CONFIG _FOSC_XT & _WDTE_OFF & _PWRTE_OFF & _CP_OFF
+                      00005 
+Warning[207]: Found label after column 1. (RES_VECT)
+                      00006      RES_VECT CODE 0x0000                                    ; processor reset vector
+                      00007 
+0000   2???           00008      GOTO START                                              ; go to beginning of program
+                      00009 
+                      00010 
+                      00011     ; Initialised
+Warning[207]: Found label after column 1. (CTR_01)
+  00000020            00012     CTR_01        EQU 0x20          ;Counter for delay
+Warning[207]: Found label after column 1. (CTR_02)
+  00000021            00013     CTR_02        EQU 0x21          ;Counter for delay
+                      00014     
+Warning[207]: Found label after column 1. (COUNT)
+  00000024            00015     COUNT         EQU 0x24          ;DISPLAY + 2   (2<=range<=11)
+Warning[207]: Found label after column 1. (DISPLAY)
+  00000025            00016     DISPLAY       EQU 0x25          ;Output to BCD (0<=range<=9)          
+                      00017 
+                      00018   
+                      00019 MAIN_PROG CODE ; let linker place main program
+Warning[207]: Found label after column 1. (START)
+0000                  00020     START
+0000   1283           00021         BCF STATUS, RP0 ; Select Bank 0 (PORT B)
+0001   0186           00022         CLRF PORTB ; Initialize PORT B by clearing output data latches
+0002   1683           00023         BSF STATUS, RP0 ; Select Bank 1 (TRIS B)
+0003   3000           00024         MOVLW 0x0 ; Value used to initialize data direction
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   0086           00025         MOVWF TRISB ; Set RB<7:0> as outputs
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0005   1505           00026         BSF TRISA,2 ; Set RA2 as input
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0006   1585           00027         BSF TRISA,3 ; Set RA3 as input
+0007   1283           00028         BCF STATUS, RP0 ; Select Bank 0 (PORT B)
+                      00029         
+                      00030         ; Start with 0
+Warning[207]: Found label after column 1. (again1)
+0008                  00031         again1
+                      00032         
+0008   01A4           00033             CLRF    COUNT
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0009   01A5           00034             CLRF    DISPLAY
+000A   3000           00035             MOVLW   D'0'
+000B   00A5           00036             MOVWF   DISPLAY
+000C   3E02           00037             ADDLW   D'2'
+000D   00A4           00038             MOVWF   COUNT
+000E   2???           00039             GOTO    loop
+                      00040         
+                      00041         ; Start with 9
+Warning[207]: Found label after column 1. (again2)
+000F                  00042         again2
+000F   01A4           00043             CLRF    COUNT
+0010   01A5           00044             CLRF    DISPLAY
+0011   3009           00045             MOVLW   D'9'
+0012   00A5           00046             MOVWF   DISPLAY
+0013   3E02           00047             ADDLW   D'2'
+0014   3024           00048             MOVLW   COUNT
+0015   2???           00049             GOTO    loop
+                      00050             
+Warning[207]: Found label after column 1. (loop)
+0016                  00051         loop
+                      00052             
+0016   0825           00053             MOVFW DISPLAY
+0017   0086           00054             MOVWF PORTB         ;OUTPUT COUNT TO BCD
+                      00055             ; Delay 1 second
+0018   2???           00056             CALL Delay
+0019   2???           00057             CALL Delay
+001A   2???           00058             CALL Delay
+001B   2???           00059             CALL Delay
+                      00060             ; End Delay
+                      00061             
+001C   2???           00062             CALL RA_CHECK
+001D   2???           00063             GOTO loop
+                      00064             
+                      00065             
+                      00066         ; XOR
+                      00067         ; | 0 | 0 | = 0 
+                      00068         ; | 0 | 1 | = 1 
+                      00069         ; | 1 | 0 | = 1
+                      00070         ; | 1 | 1 | = 0 
+                      00071         
+                      00072     
+Warning[207]: Found label after column 1. (RA_CHECK)
+001E                  00073     RA_CHECK
+Warning[207]: Found label after column 1. (CHK_PUSH)
+001E                  00074       CHK_PUSH
+001E   0805           00075         MOVFW PORTA
+001F   3904           00076         ANDLW B'00000100'               
+0020   0805           00077         MOVFW PORTA
+0021   1D03           00078         BTFSS STATUS, Z
+0022   2???           00079         GOTO  RA2_FALSE                 ; 0 | ?
+0023   2???           00080         GOTO  RA2_TRUE                  ; 1 | ?
+                      00081 
+Warning[207]: Found label after column 1. (RA2_TRUE)
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0024                  00082         RA2_TRUE                                ; 1 | ?
+0024   0805           00083             MOVFW PORTA
+0025   3908           00084             ANDLW B'00001000'           ; Check RA3
+0026   1D03           00085             BTFSS STATUS, Z
+0027   2???           00086             GOTO  INCREMENT1                    ; 1 | 0 => Increment
+0028   2???           00087             GOTO  CHK_PUSH                      ; 1 | 1 => Restart
+                      00088 
+Warning[207]: Found label after column 1. (RA2_FALSE)
+0029                  00089         RA2_FALSE                               ; 0 | 1
+0029   0805           00090             MOVFW PORTA
+002A   3908           00091             ANDLW B'00001000'           ; Check RA3
+002B   1D03           00092             BTFSS STATUS, Z
+002C   2???           00093             GOTO  CHK_PUSH              ; 0 | 0 => Restart
+002D   2???           00094             GOTO  DECREMENT1            ; 0 | 1 => Decrement 
+                      00095 
+Warning[207]: Found label after column 1. (INCREMENT1)
+002E                  00096         INCREMENT1          
+002E   2???           00097             CALL Delay                   ; wait until the bouncing
+002F   2???           00098             CALL Delay                   ; of the push button finishes
+0030   0805           00099             MOVFW PORTA
+0031   3904           00100             ANDLW B'00000100'
+0032   1D03           00101             BTFSS STATUS, Z
+0033   2???           00102             GOTO  CHK_PUSH                       ; if false, restart
+Message[305]: Using default destination of 1 (file).
+0034   0AA4           00103             INCF  COUNT                  ; +1 Counter
+0035   300C           00104             MOVLW D'12'
+0036   0624           00105             XORWF COUNT, 0               ; check wether counter = 12 (disp = 10)
+0037   2???           00106             GOTO INCREMENT2
+0038   2???           00107             GOTO again1                  ; counter = 12, reset to 0
+                      00108 
+Warning[207]: Found label after column 1. (INCREMENT2)
+0039                  00109         INCREMENT2                               ; counter added, need to add display
+Message[305]: Using default destination of 1 (file).
+0039   0AA5           00110             INCF DISPLAY
+003A   0008           00111             RETURN                       ; Start again
+                      00112 
+Warning[207]: Found label after column 1. (DECREMENT1)
+003B                  00113         DECREMENT1
+003B   2???           00114             CALL Delay                   ; wait until the bouncing
+003C   2???           00115             CALL Delay                   ; of the push button finishes
+003D   0805           00116             MOVFW PORTA
+003E   3908           00117             ANDLW B'00001000'
+003F   1D03           00118             BTFSS STATUS, Z
+0040   2???           00119             GOTO  CHK_PUSH                       ; if false, restart
+Message[305]: Using default destination of 1 (file).
+0041   03A4           00120             DECF  COUNT                  ; -1 Counter
+0042   3001           00121             MOVLW D'1'
+0043   0624           00122             XORWF COUNT, 0               ; check wether counter = 1  (disp = -1)
+0044   2???           00123             GOTO DECREMENT2
+0045   2???           00124             GOTO again2                  ; counter = 1, set to 9
+                      00125 
+Warning[207]: Found label after column 1. (DECREMENT2)
+0046                  00126         DECREMENT2
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Message[305]: Using default destination of 1 (file).
+0046   03A5           00127             DECF DISPLAY
+0047   0008           00128             RETURN
+                      00129             
+                      00130             
+                      00131             
+                      00132         
+Warning[207]: Found label after column 1. (Delay)
+0048                  00133     Delay
+0048   30FF           00134         MOVLW 0xFF
+0049   00A0           00135         MOVWF CTR_01
+Warning[207]: Found label after column 1. (L1)
+004A                  00136         L1
+004A   30FF           00137             MOVLW 0xFF
+004B   00A1           00138             MOVWF CTR_02
+Warning[207]: Found label after column 1. (L2)
+004C                  00139         L2
+004C   0BA1           00140             DECFSZ CTR_02,F
+004D   2???           00141             GOTO L2
+004E   0BA0           00142             DECFSZ CTR_01,F
+004F   2???           00143             GOTO L1
+0050   0008           00144         RETURN
+                      00145 
+                      00146 
+Warning[205]: Found directive in column 1. (END)
+3FF9                  00147 END
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+CHK_PUSH                          0000001E
+COUNT                             00000024
+CTR_01                            00000020
+CTR_02                            00000021
+DC                                00000001
+DECREMENT1                        0000003B
+DECREMENT2                        00000046
+DISPLAY                           00000025
+Delay                             00000048
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INCREMENT1                        0000002E
+INCREMENT2                        00000039
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+L1                                0000004A
+L2                                0000004C
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA2_FALSE                         00000029
+RA2_TRUE                          00000024
+RA3                               00000003
+RA4                               00000004
+RA_CHECK                          0000001E
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+START                             00000000
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+MPASM 5.72  /USERS/SUPEROO7/FILES/PROGRAMMIN   5-4-2017  21:55:28         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+again1                            00000008
+again2                            0000000F
+loop                              00000016
+
+Errors   :     0
+Warnings :    21 reported,     0 suppressed
+Messages :     7 reported,     0 suppressed
+
+
