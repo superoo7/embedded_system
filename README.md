@@ -13,6 +13,8 @@
 
 ### Learn C/C++ with Arduino UNO
 * [T5](./t5/T5.md)
+* [T6]
+* [T7](./t7/t7.md)
 
 ### Practice Test
 * [Practice Test]()
@@ -21,9 +23,9 @@
 
 
 ### Lab
-* Lab1
-* Lab2
-* Lab3		
+* [Lab1](./appendix/1/main.asm)
+* [Lab2](./appendix/2/test/test.ino)
+* [Lab3](./appendix/lab3/calc/calc.ino)		
 
 ### Things to remember
 #### Assembly
