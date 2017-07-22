@@ -9,15 +9,14 @@
 * [T1](./t1/T1.md)
 * [T2](./t2/T2.pdf)
 * [T3](./t3/T3.pdf)
-* [T4](./t4/T4.md)
+* [T4](./t4/t4.md)
 
 ### Learn C/C++ with Arduino UNO
-* [T5](./t5/T5.md)
-* [T6]
-* [T7](./t7/t7.md)
+* [T5](./t5/T5.pdf)
+* [T7](./t7/T7.pdf)
 
 ### Practice Test
-* [Practice Test]()
+* [Practice Test]
 
 ### From senior
 
