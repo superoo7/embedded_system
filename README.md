@@ -13,6 +13,7 @@
 
 ### Learn C/C++ with Arduino UNO
 * [T5](./t5/T5.pdf)
+* [T6a](./t6a/t6a.ino)  [T6b](./appendix/2/test/test.ino) refer to lab 2
 * [T7](./t7/T7.pdf)
 
 ### Practice Test
