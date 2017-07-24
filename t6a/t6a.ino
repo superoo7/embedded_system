@@ -1,9 +1,9 @@
-#DEFINE M1 3
-#DEFINE M2 5
-#DEFINE MINSPEED 100
+#define M1 3
+#define M2 5
+#define MINSPEED 100
 
-#DEFINE GREEN 11
-#DEFINE RED 12
+#define GREEN 11
+#define RED 12
 
 float time;
 
