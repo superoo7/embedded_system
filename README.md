@@ -5,6 +5,10 @@
 # PIC
 * Install MPLAB X
 
+### NOTES
+* [Assembly in PIC16](./notes.asm)
+* [C in PIC16](./CnASM.md)
+
 ### Learning assembly with PIC16
 * [T1](./t1/T1.md)
 * [T2](./t2/T2.pdf)

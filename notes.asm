@@ -1,0 +1,75 @@
+; Quick notes
+
+; 1) Initialize Port A
+; Method 1
+BCF   STATUS, RP0				; PORT - BANK 0
+CLRF  PORTA						; CLEAR PORT A
+BSF   STATUS, RP0				; TRIS - BANK 1
+MOVLW 0X0F						; 0000 1111
+MOVWF TRISA						; SET RA<0:3> AS INPUTS, RA<4:7> AS OUTPUTS
+
+; METHOD 2
+BSF STATUS, RP0 				; TRIS - BANK 1
+BSF TRISB, 0					; RB0 AS INPUT
+BSF TRISB, 1					; RB1 AS INPUT
+BSF TRISB, 2					; RB2 AS INPUT
+BSF TRISB, 3					; RB3 AS INPUT
+
+; Example
+; Set RB<1:6> as input, RB0 and RB7 as output
+BSF   STATUS, RP0				; TRIS - BANK 1
+MOVLW B'0111 1110'
+MOVWF TRISB						; RB<1:6> as input, RB0 and RB7 as output
+BCF   STATUS, RP0				; PORT - BANK 0
+
+; Set even pins to logic 1 and odd pins to 0 on Port A
+; Note: Port A has only RA<0:3>
+BSF    STATUS, RP0				; TRIS - BANK 1
+MOVLW  B'0000 0101'
+MOVWF  TRISA					; RA0,RA2 - INPUT RA1,RA3 - OUTUT
+
+; 2) Write to port
+BSF   STATUS, RP0 				; TRIS - BANK 1
+CLRF  TRISB						; RB<0:7> AS OUTPUT
+BCF   STATUS, RP0				; PORT - BANK 0
+MOVLW 0X33
+MOVWF TRISB 
+
+; 3) Toggle Port B
+COMPF PORTB, F
+
+; 4) Checking a Port
+BSF  STATUS, RP0				; TRIS - BANK 1
+BSF  TRISB, 2					; RB2 AS INPUT
+BCF  STATUS, RP0				; PORT - BANK 0
+HERE
+	BTFSS PORTB, 2				; MONITOR RB2, IF SET, SKIP
+	GOTO HERE					; WHEN CLEAR
+	NOP							; WHEN SET
+
+
+; 5) Counter
+; Count 00 -> 40 with 2 loops (inner 10x, outer 4x)
+
+
+R1 EQU 0X20				; INNER
+R2 EQU 0X21				; OUTER
+
+CO EQU 0X22				; INNER
+
+START
+	MOVLW D'3'			; 4 COUNTS
+	MOVWF R2
+
+	LOOP_OUT
+		MOVLW D'9'		; 10 COUNTS
+		MOVWF R1 		
+	LOOP_IN
+		INCF   CO, F 	; INCREASE COUNTER
+		DECFSZ R1, F 	; CHECK R1, SKIP IF CLEAR
+		GOTO LOOP_IN
+		DECFSZ R2, F 	; CHECK R2, SKIP IF CLEAR
+		GOTO LOOP_OUT
+		GOTO START
+
+
